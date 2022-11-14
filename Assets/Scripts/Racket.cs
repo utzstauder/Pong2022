@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Racket : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed = 5f;
+    
+    private Rigidbody2D rb;
+    private float vertical;
+    public string axisName;
+
+    private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        vertical = Input.GetAxis(axisName);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = Vector2.up * (vertical * speed);
     }
 }
